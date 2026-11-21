@@ -133,8 +133,65 @@ const cases=[
 ];
 function readStore(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){return fallback}}function writeStore(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(e){showToast('Tarayıcı kayıt izni vermedi; bu cihazda saklanamadı.');return false}}const labels=['A haklı','B haklı','İkisi de haksız','Eksik bilgi var'];const votesLocal=readStore('kh-votes-v2',{});const feed=document.getElementById('feed');let active='all';
 function pct(c,k,choice){const v=[...c.votes];if(choice!==undefined)v[choice]=(v[choice]||0)+1;const n=v.reduce((s,x)=>s+x,0);return n?Math.round(v[k]/n*100):0}
-function render(){feed.innerHTML='';const list=cases.filter(c=>active==='all'||(active==='dunya'?c.region!=='turkiye':c.region===active||c.cat===active));document.getElementById('empty').style.display=list.length?'none':'block';list.forEach((c,idx)=>{const voted=votesLocal[c.id];const el=document.createElement('article');el.className='case';el.innerHTML=`<div class="case-meta"><span class="case-id">DOSYA #${String(c.id).padStart(3,'0')}</span><span class="tag-group"><span class="tag">${(c.tag||c.cat).toLocaleUpperCase('tr-TR')}</span><span class="tag tag-category">${c.cat.toLocaleUpperCase('tr-TR')}</span></span></div><h2 class="story-title">${c.title}</h2><p class="story-text">${c.story}</p><div class="sides"><div class="side"><div class="side-label">A tarafı</div><div class="side-text">${c.a}</div></div><div class="side"><div class="side-label">B tarafı</div><div class="side-text">${c.b}</div></div></div><div class="source-box"><div class="source-copy"><strong>Kaynak: Ekşi Sözlük</strong> · ${c.sourceLabel}</div><a class="source-link" href="${c.sourceUrl}" target="_blank" rel="noopener noreferrer">Tartışmanın tamamını oku ↗</a></div><div class="question">${voted!==undefined?'Kararını verdin':'Sen olsan kimin yanında dururdun?'}</div><div class="votes">${labels.map((label,k)=>`<button class="vote ${voted===k?'chosen':''}" data-v="${k}" >${label}</button>`).join('')}</div><div class="missing-info" data-missing><label>Hangi bilgi eksik? Biraz daha açıklar mısın?</label><textarea data-missing-text placeholder="Örneğin: Olayın ne zaman yaşandığı veya tarafların ne söylediği..."></textarea><button type="button" data-missing-send>Yanıtı gönder</button></div><div class="results ${voted!==undefined?'visible':''}"><div class="result"><div class="result-label"><span>A haklı</span><span>${pct(c,0,voted)}%</span></div><div class="track"><div class="bar" style="width:${pct(c,0,voted)}%"></div></div></div><div class="result"><div class="result-label"><span>B haklı</span><span>${pct(c,1,voted)}%</span></div><div class="track"><div class="bar" style="width:${pct(c,1,voted)}%"></div></div></div><div class="result"><div class="result-label"><span>İkisi de haksız</span><span>${pct(c,2,voted)}%</span></div><div class="track"><div class="bar" style="width:${pct(c,2,voted)}%"></div></div></div><div class="result"><div class="result-label"><span>Eksik bilgi var</span><span>${pct(c,3,voted)}%</span></div><div class="track"><div class="bar" style="width:${pct(c,3,voted)}%"></div></div></div><div class="result-note">Demo oyları · Gerçek topluluk verisi değil</div></div><div class="case-footer"><span class="progress">${idx+1} / ${list.length} dosya</span><button class="share" data-share>Hikâyeyi paylaş ↗</button></div>`;
- const missingBox=el.querySelector('[data-missing]');const missingTextarea=el.querySelector('[data-missing-text]');const missingNotes=readStore('kh-missing-info-v1',{});missingTextarea.value=missingNotes[c.id]||'';if(voted===3)missingBox.classList.add('open');el.querySelectorAll('.vote').forEach(btn=>btn.addEventListener('click',()=>{const choice=Number(btn.dataset.v);if(choice===3){missingBox.classList.add('open');missingTextarea.focus();return}votesLocal[c.id]=choice;writeStore('kh-votes-v2',votesLocal);render();showToast('Oyun güncellendi.')}));el.querySelector('[data-missing-send]').addEventListener('click',()=>{const detail=missingTextarea.value.trim();if(detail.length<3){showToast('Eksik olduğunu düşündüğün bilgiyi yaz.');return}const all=readStore('kh-missing-info-v1',{});all[c.id]=detail;writeStore('kh-missing-info-v1',all);votesLocal[c.id]=3;writeStore('kh-votes-v2',votesLocal);render();showToast('Notun ve oyun kaydedildi.')}));el.querySelector('[data-share]').addEventListener('click',()=>share(c));feed.appendChild(el);});}
+function render(){
+  feed.innerHTML='';
+  const list=cases.filter(c=>active==='all'||(active==='dunya'?c.region!=='turkiye':c.region===active||c.cat===active));
+  document.getElementById('empty').style.display=list.length?'none':'block';
+  list.forEach((c,idx)=>{
+    const voted=votesLocal[c.id];
+    const el=document.createElement('article');
+    el.className='case';
+    const tag=(c.tag||c.cat).toLocaleUpperCase('tr-TR');
+    const category=c.cat.toLocaleUpperCase('tr-TR');
+    const percentages=[0,1,2,3].map(k=>pct(c,k,voted));
+    el.innerHTML=`
+      <div class="case-meta">
+        <span class="case-id">DOSYA #${String(c.id).padStart(3,'0')}</span>
+        <span class="tag-group"><span class="tag">${tag}</span><span class="tag tag-category">${category}</span></span>
+      </div>
+      <h2 class="story-title">${c.title}</h2>
+      <p class="story-text">${c.story}</p>
+      <div class="sides">
+        <div class="side"><div class="side-label">A tarafı</div><div class="side-text">${c.a}</div></div>
+        <div class="side"><div class="side-label">B tarafı</div><div class="side-text">${c.b}</div></div>
+      </div>
+      <div class="source-box"><div class="source-copy"><strong>Kaynak: Ekşi Sözlük</strong> · ${c.sourceLabel}</div><a class="source-link" href="${c.sourceUrl}" target="_blank" rel="noopener noreferrer">Tartışmanın tamamını oku ↗</a></div>
+      <div class="question">${voted!==undefined?'Kararını verdin':'Sen olsan kimin yanında dururdun?'}</div>
+      <div class="votes">${labels.map((label,k)=>`<button class="vote ${voted===k?'chosen':''}" data-v="${k}">${label}</button>`).join('')}</div>
+      <div class="missing-info" data-missing><label>Hangi bilgi eksik? Biraz daha açıklar mısın?</label><textarea data-missing-text placeholder="Örneğin: Olayın ne zaman yaşandığı veya tarafların ne söylediği..."></textarea><button type="button" data-missing-send>Yanıtı gönder</button></div>
+      <div class="results ${voted!==undefined?'visible':''}">
+        ${['A haklı','B haklı','İkisi de haksız','Eksik bilgi var'].map((label,k)=>`<div class="result"><div class="result-label"><span>${label}</span><span>${percentages[k]}%</span></div><div class="track"><div class="bar" style="width:${percentages[k]}%"></div></div></div>`).join('')}
+        <div class="result-note">Demo oyları · Gerçek topluluk verisi değil</div>
+      </div>
+      <div class="case-footer"><span class="progress">${idx+1} / ${list.length} dosya</span><button class="share" data-share>Hikâyeyi paylaş ↗</button></div>`;
+    const missingBox=el.querySelector('[data-missing]');
+    const missingTextarea=el.querySelector('[data-missing-text]');
+    const missingNotes=readStore('kh-missing-info-v1',{});
+    missingTextarea.value=missingNotes[c.id]||'';
+    if(voted===3)missingBox.classList.add('open');
+    el.querySelectorAll('.vote').forEach(btn=>btn.addEventListener('click',()=>{
+      const choice=Number(btn.dataset.v);
+      if(choice===3){missingBox.classList.add('open');missingTextarea.focus();return;}
+      votesLocal[c.id]=choice;
+      writeStore('kh-votes-v2',votesLocal);
+      render();
+      showToast('Oyun güncellendi.');
+    }));
+    el.querySelector('[data-missing-send]').addEventListener('click',()=>{
+      const detail=missingTextarea.value.trim();
+      if(detail.length<3){showToast('Eksik olduğunu düşündüğün bilgiyi yaz.');return;}
+      const all=readStore('kh-missing-info-v1',{});
+      all[c.id]=detail;
+      writeStore('kh-missing-info-v1',all);
+      votesLocal[c.id]=3;
+      writeStore('kh-votes-v2',votesLocal);
+      render();
+      showToast('Notun ve oyun kaydedildi.');
+    });
+    el.querySelector('[data-share]').addEventListener('click',()=>share(c));
+    feed.appendChild(el);
+  });
+}
 function share(c){const txt=`KİM HAKLI?\n\n${c.title}\n\n${c.story}\n\nA tarafı: ${c.a}\nB tarafı: ${c.b}\n\nSen olsan kimin yanında dururdun?`;if(navigator.share){navigator.share({title:'KİM HAKLI?',text:txt}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>showToast('Paylaşım metni kopyalandı.'))}else showToast('Bu cihaz paylaşımı desteklemiyor.');}
 function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');setTimeout(()=>el.classList.remove('on'),1800)}
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.filter;render()}));
