@@ -7,11 +7,65 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 :root{--bg:#f4f1ea;--ink:#151515;--muted:#73716b;--line:#ded9cf;--card:#fffdf9;--accent:#ff553e;--soft:#f1e8dc;--green:#26745c;--gold:#d5a52e;--radius:20px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}button{font:inherit}.wrap{max-width:760px;margin:auto;padding:0 20px}.header{display:flex;align-items:center;justify-content:space-between;padding:21px 0;border-bottom:1px solid var(--line)}.brand{font:800 22px 'Space Grotesk';letter-spacing:-1.4px}.brand b{color:var(--accent)}.header-pill{font-size:11px;letter-spacing:1.1px;text-transform:uppercase;font-weight:800;color:var(--muted)}.hero{padding:38px 0 24px}.kicker{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}h1{font:700 clamp(40px,9vw,70px)/.97 'Space Grotesk';letter-spacing:-3.8px;margin:13px 0 14px}.hero-copy{font-size:15px;line-height:1.65;color:var(--muted);max-width:510px;margin:0}.filterbar{display:flex;gap:8px;overflow:auto;padding:6px 0 20px;scrollbar-width:none}.filterbar::-webkit-scrollbar{display:none}.filter{white-space:nowrap;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:9px 14px;font-size:12px;font-weight:700;cursor:pointer}.filter.active{background:var(--ink);color:white;border-color:var(--ink)}.case{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,5vw,32px);margin:0 0 18px;box-shadow:0 8px 26px #211a1005}.case-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.case-id{font-size:11px;font-weight:800;letter-spacing:1.1px;color:var(--muted)}.tag{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:7px 10px;background:var(--soft);border-radius:99px}.story-title{font:700 24px/1.22 'Space Grotesk';letter-spacing:-.8px;margin:0 0 12px}.story-text{font-size:15px;line-height:1.7;color:#383632;margin:0 0 21px}.sides{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}.side{background:#f8f5ef;border:1px solid #e7e1d7;border-radius:14px;padding:14px}.side-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:var(--muted);margin-bottom:7px}.side-text{font-size:13px;line-height:1.55;font-weight:600}.question{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin:0 0 11px}.votes{display:grid;grid-template-columns:1fr 1fr;gap:9px}.vote{border:1.5px solid var(--line);background:transparent;border-radius:12px;padding:13px 12px;font-size:13px;font-weight:800;cursor:pointer;transition:.15s}.vote:hover:not(:disabled){border-color:var(--ink);transform:translateY(-1px)}.vote:disabled{cursor:default}.vote.chosen{background:var(--ink);border-color:var(--ink);color:white}.results{display:none;padding-top:16px}.results.visible{display:block}.result{margin:10px 0}.result-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:6px}.track{height:8px;background:#eae5dd;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--accent);border-radius:99px;width:0;transition:width .4s}.result-note{color:var(--muted);font-size:11px;margin-top:12px}.case-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}.progress{font-size:11px;color:var(--muted);font-weight:700}.share{border:0;background:var(--accent);color:white;padding:11px 14px;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer}.share:hover{filter:brightness(.96)}.empty{display:none;color:var(--muted);padding:24px;text-align:center}.submit-cta{border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:6px 0 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;background:#f0ece4}.submit-cta h2{font:700 19px 'Space Grotesk';letter-spacing:-.5px;margin:0 0 5px}.submit-cta p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}.submit-btn{border:0;background:var(--ink);color:#fff;border-radius:10px;padding:12px 15px;font-weight:800;font-size:12px;white-space:nowrap;cursor:pointer}.footer{text-align:center;color:var(--muted);padding:20px 0 44px;font-size:11px;line-height:1.7}.footbrand{font:800 14px 'Space Grotesk';color:var(--ink)}.footer-note{max-width:520px;margin:10px auto}.modal{display:none;position:fixed;inset:0;background:#0009;padding:18px;align-items:center;justify-content:center;z-index:5}.modal.open{display:flex}.modal-box{background:var(--bg);border-radius:18px;padding:22px;max-width:460px;width:100%;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h2{font:700 22px 'Space Grotesk';margin:0}.close{border:0;background:transparent;font-size:22px;cursor:pointer}.modal-box p{font-size:13px;color:var(--muted);line-height:1.55}.modal-box input,.modal-box textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;font:inherit;margin:6px 0}.modal-box textarea{min-height:140px;resize:vertical}.modal-submit{width:100%;border:0;background:var(--ink);color:white;border-radius:10px;padding:12px;font-weight:800;margin-top:8px;cursor:pointer}.tiny{font-size:10px!important}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 16px;border-radius:99px;font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}.toast.on{opacity:1}
 @media(max-width:500px){.wrap{padding:0 15px}.header{padding:17px 0}.brand{font-size:20px}.hero{padding:32px 0 18px}h1{letter-spacing:-2.6px}.sides{grid-template-columns:1fr;gap:8px}.side{padding:12px}.story-title{font-size:22px}.submit-cta{align-items:flex-start;flex-direction:column}.submit-btn{width:100%}.case-footer{align-items:flex-start;flex-direction:column}.share{width:100%}}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+:root{--bg:#f3efe5;--ink:#202b27;--muted:#6d746d;--line:#d8d2c5;--card:#fffdf7;--accent:#c94e35;--soft:#f1e3c7;--green:#28594a;--gold:#d5a52e;--radius:12px}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}
+.wrap{max-width:820px;padding:0 24px}
+.header{padding:22px 0 17px;border-bottom:2px solid var(--ink)}
+.brand{font:800 25px 'DM Sans';letter-spacing:-1.8px}
+.brand b{color:var(--accent)}
+.header-pill{background:var(--ink);color:#f8f3e8;padding:8px 12px;font-size:10px;letter-spacing:1.5px}
+.hero{padding:52px 0 32px;position:relative}
+.kicker{color:var(--green);font-size:10px;letter-spacing:2px}
+.dot{background:var(--accent);width:9px;height:9px}
+h1{font:600 clamp(44px,9vw,76px)/.99 'Fraunces',serif;letter-spacing:-2.8px;margin:16px 0 16px;max-width:680px}
+.hero-copy{font-size:15px;line-height:1.75;color:#555f57;max-width:560px}
+.filterbar{gap:7px;padding:10px 0 24px;border-top:1px solid var(--line)}
+.filter{border:1px solid #c9c2b5;border-radius:6px;padding:9px 13px;font-size:11px;font-weight:700;background:#f8f5ed}
+.filter.active{background:var(--green);color:#fffdf7;border-color:var(--green)}
+.case{background:var(--card);border:1px solid #d8d1c3;border-radius:10px;padding:clamp(21px,5vw,34px);margin:0 0 17px;box-shadow:0 3px 0 #d8d1c3}
+.case-meta{margin-bottom:17px}
+.case-id{font-size:10px;letter-spacing:1.4px;color:var(--green)}
+.tag{font-size:9px;letter-spacing:1px;padding:7px 10px;background:#f4e5c7;color:#76521f;border-radius:4px}
+.story-title{font:600 clamp(23px,4vw,29px)/1.18 'Fraunces',serif;letter-spacing:-.45px;max-width:650px;margin-bottom:13px}
+.story-text{font-size:14px;line-height:1.75;color:#414a43;margin-bottom:22px}
+.sides{gap:10px;margin-bottom:21px}
+.side{background:#f5f2e9;border:0;border-top:3px solid var(--green);border-radius:4px;padding:15px}
+.side:nth-child(2){border-top-color:var(--accent)}
+.side-label{font-size:9px;letter-spacing:1.5px;color:var(--green)}
+.side:nth-child(2) .side-label{color:var(--accent)}
+.side-text{font-size:13px;line-height:1.65;font-weight:500;color:#303a34}
+.question{font-size:10px;letter-spacing:1.5px;color:var(--green);margin-bottom:10px}
+.votes{gap:8px}
+.vote{border:1px solid #cfc8ba;background:#fffdf7;border-radius:6px;padding:13px 12px;font-size:12px;color:var(--ink)}
+.vote:hover:not(:disabled){border-color:var(--green);background:#edf2eb;transform:translateY(-1px)}
+.vote.chosen{background:var(--green);border-color:var(--green);color:white}
+.results{border-top:1px solid var(--line);margin-top:15px}
+.track{background:#e8e2d6;height:7px;border-radius:2px}
+.bar{background:var(--accent);border-radius:2px}
+.result-label{font-size:11px}
+.result-note{font-size:10px}
+.case-footer{border-top:1px solid var(--line);padding-top:14px;margin-top:16px}
+.progress{font-size:10px;letter-spacing:.7px;text-transform:uppercase}
+.share{background:var(--accent);border-radius:5px;padding:11px 15px;font-size:11px;letter-spacing:.2px}
+.share:hover{filter:brightness(.9)}
+.submit-cta{background:var(--green);border:0;border-radius:9px;padding:25px;color:#fffdf7;margin:12px 0 28px}
+.submit-cta h2{font:600 25px 'Fraunces',serif;letter-spacing:-.3px}
+.submit-cta p{color:#dce5dc;font-size:12px}
+.submit-btn{background:#e8bd61;color:#202b27;border-radius:5px}
+.footer{font-size:10px}
+.footbrand{font:800 15px 'DM Sans';letter-spacing:-.5px}
+.modal-box{border-radius:10px;background:#f8f4eb}
+.modal-head h2{font:600 25px 'Fraunces',serif}
+.modal-box input,.modal-box textarea{border-radius:5px}
+.modal-submit{border-radius:5px;background:var(--green)}
+.toast{border-radius:5px}
+@media(max-width:500px){.wrap{padding:0 15px}.hero{padding:40px 0 25px}h1{letter-spacing:-1.9px}.case{padding:21px 18px}.sides{grid-template-columns:1fr;gap:8px}.submit-cta{padding:22px}.submit-btn{width:100%}.case-footer{align-items:center;flex-direction:row}.share{width:auto}}
 </style>
 </head>
 <body><main class="wrap">
-<header class="header"><div class="brand">KİM <b>HAKLI?</b></div><div class="header-pill">Jüri sensin.</div></header>
-<section class="hero"><div class="kicker"><span class="dot"></span> Tarafsız jüri sensin</div><h1>Dinle. Tart.<br>Kararını ver.</h1><p class="hero-copy">Türkiye’den gündelik tartışmalar, dünyadan viral meseleler ve kültür çatışmaları. Başkasının hayatına gir, iki tarafı dinle ve kararını ver.</p></section>
+<header class="header"><div class="brand">KİM <b>HAKLI?</b></div><div class="header-pill">FİKİR MEYDANI · 01</div></header>
+<section class="hero"><div class="kicker"><span class="dot"></span> HER KONUNUN İKİ TARAFI VAR</div><h1>Bir dinle.<br>Sonra karar ver.</h1><p class="hero-copy">Türkiye’den, İngiltere’den, dünyanın dört bir yanından tartışmalar. İki tarafı da oku. Sen kimin yanındasın?</p></section>
 <nav class="filterbar" id="filters" aria-label="Hikâye kategorileri"><button class="filter active" data-filter="all">Hepsi</button><button class="filter" data-filter="ilişki">İlişkiler</button><button class="filter" data-filter="arkadaşlık">Arkadaşlık</button><button class="filter" data-filter="aile">Aile</button><button class="filter" data-filter="iş">İş hayatı</button><button class="filter" data-filter="para">Para</button><button class="filter" data-filter="ingiltere">İngiltere</button><button class="filter" data-filter="dünya">Dünya</button><button class="filter" data-filter="kültür">Kültür çatışması</button></nav>
 <div id="feed"></div><div class="empty" id="empty">Bu kategoride henüz dosya yok.</div>
 <section class="submit-cta"><div><h2>Jüriye bir dosyan var mı?</h2><p>Yaşadığın olayı anlat. Anonim paylaşım için incelemeye alalım.</p></div><button class="submit-btn" id="openSubmit">Hikâyeni gönder ↗</button></section>
